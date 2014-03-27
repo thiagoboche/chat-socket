@@ -28,15 +28,17 @@ public class ClientListener extends Thread {
 		} catch (Exception e) {
 			System.out.println("Connection closed.");
 		} finally {
-			if(!this.socket.isClosed()) shutdown();
+			if(!this.socket.isClosed()) {
+				shutdown();
+			}
 		}
 
 	}
 
 	private void listen() throws IOException {
 		while (!this.socket.isClosed()) {
-			String message;
-			message = clientToServer.readLine();
+			String message = clientToServer.readLine();
+			
 			if(message != null){
 				broadcast(message);
 			}
